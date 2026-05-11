@@ -13,4 +13,5 @@ public class PaiementDTO {
     private double montant;
 
     private TypePaiement typePaiement;
+    private String contratId;
 }
