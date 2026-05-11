@@ -1,6 +1,7 @@
 package hattabi.youness.gestion_contrats.mappers;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
 import hattabi.youness.gestion_contrats.dtos.ClientDTO;
 import hattabi.youness.gestion_contrats.dtos.ContratAssuranceAutomobileDTO;
@@ -16,6 +17,7 @@ import hattabi.youness.gestion_contrats.entities.ContratAssuranceSante;
 import hattabi.youness.gestion_contrats.entities.Paiement;
 import hattabi.youness.gestion_contrats.enums.StatutContrat;
 
+@Component
 public class GestionCreditMapper {
     public ClientDTO fromClient(Client Client) {
         ClientDTO clientDTO = new ClientDTO();

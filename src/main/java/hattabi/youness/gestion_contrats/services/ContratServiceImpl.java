@@ -70,7 +70,7 @@ public class ContratServiceImpl implements ContratService {
 
     @Override
     public List<ClientDTO> searchClients(String nom) {
-        return clientRepository.searchCustomers("%" + nom + "%")
+        return clientRepository.searchClients("%" + nom + "%")
                 .stream().map(mapper::fromClient).toList();
     }
 

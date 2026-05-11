@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import hattabi.youness.gestion_contrats.entities.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
-    @Query("SELECT c FROM Customer c WHERE c.name LIKE :kw")
-    List<Client> searchCustomers(@Param("kw") String keyword);
+    @Query("SELECT c FROM Client c WHERE c.name LIKE :kw")
+    List<Client> searchClients(@Param("kw") String keyword);
 }

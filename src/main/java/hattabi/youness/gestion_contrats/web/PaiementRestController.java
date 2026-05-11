@@ -16,10 +16,10 @@ import java.util.List;
 public class PaiementRestController {
     private final ContratService contratService;
 
-    @GetMapping("/credit/{creditId}")
+    @GetMapping("/contrats/{contratId}")
     @PreAuthorize("hasAnyRole('CLIENT','EMPLOYE','ADMIN')")
-    public List<PaiementDTO> getByContrat(@PathVariable String creditId) {
-        return contratService.getPaiementsByContrat(creditId);
+    public List<PaiementDTO> getByContrat(@PathVariable String contratId) {
+        return contratService.getPaiementsByContrat(contratId);
     }
 
     @PostMapping
