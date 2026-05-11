@@ -17,30 +17,31 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final PasswordConfig passwordConfig;
-    private final JwtAuthenticationFilter jwtFilter;
-    private final UserDetailServiceImpl userDetailService;
+        private final PasswordConfig passwordConfig;
+        private final JwtAuthenticationFilter jwtFilter;
+        private final UserDetailServiceImpl userDetailService;
 
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        var builder = http.getSharedObject(
-                org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.class);
-        builder.userDetailsService(userDetailService).passwordEncoder(passwordConfig.passwordEncoder());
-        return builder.build();
-    }
+        @Bean
+        public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+                var builder = http.getSharedObject(
+                                org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.class);
+                builder.userDetailsService(userDetailService).passwordEncoder(passwordConfig.passwordEncoder());
+                return builder.build();
+        }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/h2-console/**",
-                                "/swagger-ui/**", "/api-docs/**")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .headers(h -> h.frameOptions(f -> f.disable())) // for H2 console
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+                http
+                                .csrf(csrf -> csrf.disable())
+                                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/api/auth/**", "/h2-console/**",
+                                                                "/swagger-ui/**", "/api-docs/**", "/swagger-ui.html",
+                                                                "/v3/api-docs/**")
+                                                .permitAll()
+                                                .anyRequest().authenticated())
+                                .headers(h -> h.frameOptions(f -> f.disable())) // for H2 console
+                                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                return http.build();
+        }
 }
