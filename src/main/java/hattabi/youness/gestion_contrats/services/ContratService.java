@@ -27,7 +27,7 @@ public interface ContratService {
 
     ContratAssuranceHabitationDTO saveContratAssuranceHabitation(ContratAssuranceHabitationDTO dto);
 
-    ContratAssuranceSanteDTO savContratAssuranceSanteDTO(ContratAssuranceSanteDTO dto);
+    ContratAssuranceSanteDTO savContratAssuranceSante(ContratAssuranceSanteDTO dto);
 
     ContratAssuranceDTO getContrat(String id);
 

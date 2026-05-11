@@ -114,7 +114,7 @@ public class ContratServiceImpl implements ContratService {
         return mapper.fromContratAssuranceHabitation(saved);
     }
 
-    public ContratAssuranceSanteDTO savContratAssuranceSanteDTO(ContratAssuranceSanteDTO dto) {
+    public ContratAssuranceSanteDTO savContratAssuranceSante(ContratAssuranceSanteDTO dto) {
         Client client = clientRepository.findById(dto.getClientDTO().getId())
                 .orElseThrow(() -> new RuntimeException("Client not found"));
         ContratAssuranceSante contratAssuranceSante = new ContratAssuranceSante();
